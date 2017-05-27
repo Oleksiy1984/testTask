@@ -3,6 +3,7 @@ package com.alex.servlets;
 
 
 import java.beans.PropertyVetoException;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -19,12 +20,13 @@ import com.alex.dao.LaptopDAOImpl;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
 
-@WebServlet(name = "RestServlet",urlPatterns = { "/all" })
-public class RestServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "GetAllServlet",urlPatterns = { "/laptops" })
+public class GetAllServlet extends javax.servlet.http.HttpServlet {
 
     private LaptopDAOImpl dao=new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {

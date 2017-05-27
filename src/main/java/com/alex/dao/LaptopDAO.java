@@ -11,4 +11,5 @@ public interface LaptopDAO {
     List<Laptop> getAllLaptops() throws SQLException, IOException, PropertyVetoException;
     void deleteLaptop (Long id);
     Laptop findById(Long id) throws SQLException,IOException,PropertyVetoException;
+    Laptop insertLaptop(Laptop laptop) throws SQLException,IOException,PropertyVetoException;
 }
