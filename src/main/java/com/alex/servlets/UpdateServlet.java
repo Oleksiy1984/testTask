@@ -14,13 +14,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "InsertLaptopServlet",urlPatterns = { "/add" })
-public class InsertLaptopServlet extends HttpServlet {
+
+@WebServlet(name = "UpdateServlet",urlPatterns = {"/update"})
+public class UpdateServlet extends HttpServlet {
 
     private LaptopDAOImpl dao= new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         StringBuffer sb = new StringBuffer();
         try{
             BufferedReader reader = request.getReader();
@@ -32,15 +32,14 @@ public class InsertLaptopServlet extends HttpServlet {
         } catch (Exception e) { e.printStackTrace(); }
 
         Laptop laptop = new Gson().fromJson(sb.toString(), Laptop.class);
-
         try {
-            dao.insertLaptop(laptop);
+            dao.updateLaptop(laptop);
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.write("A new laptop " + laptop + " has been created.");
+        out.write( laptop + " has been updated successfully!");
         out.flush();
         out.close();
     }

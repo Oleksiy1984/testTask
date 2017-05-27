@@ -16,6 +16,10 @@ public class LaptopDAOImpl implements LaptopDAO{
     private final static String insertLaptop="INSERT INTO laptop\n" +
             "(ram, cpu, screen,price)\n" +
             "VALUES(?,?,?,?);";
+    private final static String updateLaptop = "UPDATE laptop SET ram = ?,cpu=?," +
+            "screen=?,price=? WHERE id = ?";
+    private final static String delete = "DELETE FROM laptop " +
+            "WHERE id = ?";
 
 
     @Override
@@ -36,8 +40,34 @@ public class LaptopDAOImpl implements LaptopDAO{
     }
 
     @Override
-    public void deleteLaptop(Long id) {
+    public void deleteLaptop(Long id) throws IOException, PropertyVetoException {
+        try(Connection connection = DataSource.getInstance().getConnection();
+            PreparedStatement st = connection.prepareStatement(delete)) {
+            st.setLong(1, id);
+            st.executeUpdate();
+            System.out.println("Deleted successfully!");
+        } catch (SQLException e) {
+            System.err.println("SQL exception (request or table failed): " + e);
+        }
+    }
 
+    @Override
+    public Laptop updateLaptop(Laptop laptop) throws IOException, PropertyVetoException {
+
+        try(Connection connection = DataSource.getInstance().getConnection();
+            PreparedStatement st = connection.prepareStatement(updateLaptop)) {
+            st.setInt(1, laptop.getRam());
+            st.setString(2, laptop.getCpu());
+            st.setString(3, laptop.getScreen());
+            st.setInt(4, laptop.getPrice());
+            st.setLong(5,laptop.getId());
+            st.executeUpdate();
+            System.out.println("Updated successfully!");
+            System.out.println(laptop);
+        } catch (SQLException e) {
+            System.err.println("SQL exception (request or table failed): " + e);
+        }
+        return laptop;
     }
 
     @Override
@@ -58,6 +88,7 @@ public class LaptopDAOImpl implements LaptopDAO{
         }
         return laptop;
     }
+
     @Override
     public Laptop insertLaptop(Laptop laptop) throws IOException, PropertyVetoException {
             try(Connection connection = DataSource.getInstance().getConnection();
