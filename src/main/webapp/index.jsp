@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>Laptop</title>
+    <link
+            href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+            rel="stylesheet">
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script>
         var app = angular.module('myApp', []);
@@ -12,9 +15,9 @@
             $scope.getDataFromServer = function() {
                 $http({
                     method : 'GET',
-                    url : '/all'
+                    url : 'all'
                 }).success(function(data, status, headers, config) {
-                    $scope.config = data;
+                    $scope.laptops = data;
 
                 }).error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
@@ -32,22 +35,26 @@
     </div>
     <div data-ng-app="myApp">
         <div data-ng-controller="MyController">
-            <button type="button" class="btn btn-success btn-lg"
-                    data-ng-click="getDataFromServer()">All laptops</button>
-
-
             <p>
-                <button type="button" class="btn btn-info" data-toggle="collapse"
-                        data-target="#demo">User List</button>
+                <button type="button" class="btn btn-info"
+                        data-ng-click="getDataFromServer()"
+                        data-toggle="collapse"
+                        data-target="#demo">All laptops</button>
             <div id="demo" class="collapse">
-                <table id="searchTextResults" class="table table-hover">
+                <table id="allResults" class="table table-hover">
                     <tr>
                         <th>ID</th>
                         <th>RAM</th>
+                        <th>CPU</th>
+                        <th>Screen</th>
+                        <th>Price</th>
                     </tr>
-                    <tr data-ng-repeat="(key,value) in config.users">
+                    <tr data-ng-repeat="laptop in laptops">
                         <td>{{laptop.id}}</td>
-                        <td>{{ laptop.ram }}</td>
+                        <td>{{laptop.ram}}</td>
+                        <td>{{laptop.cpu}}</td>
+                        <td>{{laptop.screen}}</td>
+                        <td>{{laptop.price}}</td>
                     </tr>
                 </table>
             </div>

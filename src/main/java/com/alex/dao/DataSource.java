@@ -3,12 +3,9 @@ package com.alex.dao;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class DataSource {
