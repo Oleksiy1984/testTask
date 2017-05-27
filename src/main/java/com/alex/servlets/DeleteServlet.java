@@ -1,7 +1,6 @@
 package com.alex.servlets;
 
 import com.alex.dao.LaptopDAOImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +14,10 @@ import java.io.PrintWriter;
 @WebServlet(name = "DeleteServlet",urlPatterns = {"/delete"})
 public class DeleteServlet extends HttpServlet {
 
-    private LaptopDAOImpl dao= new LaptopDAOImpl();
+    private LaptopDAOImpl dao = new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id=request.getParameter("id");
+        String id = request.getParameter("id");
         try {
             dao.deleteLaptop(Long.parseLong(id));
         } catch (PropertyVetoException e) {
@@ -29,9 +28,5 @@ public class DeleteServlet extends HttpServlet {
         out.write("Laptop with id " + id + " has been deleted!");
         out.flush();
         out.close();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

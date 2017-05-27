@@ -1,23 +1,13 @@
 package com.alex.servlets;
 
-
-
 import java.beans.PropertyVetoException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.alex.dao.LaptopDAOImpl;
-import com.alex.domain.Laptop;
 import com.google.gson.Gson;
 
 @WebServlet(name = "GetAllServlet",urlPatterns = { "/laptops" })
@@ -25,19 +15,15 @@ public class GetAllServlet extends javax.servlet.http.HttpServlet {
 
     private LaptopDAOImpl dao=new LaptopDAOImpl();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-
-        String configJson=null;
+        String json = null;
         try {
-            configJson = new Gson().toJson(dao.getAllLaptops());
+            json = new Gson().toJson(dao.getAllLaptops());
         } catch (PropertyVetoException | SQLException e) {
             e.printStackTrace();
         }
         response.setContentType("application/json");
-        response.getWriter().write(configJson);
+        response.getWriter().write(json);
     }
 }
