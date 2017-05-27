@@ -7,26 +7,7 @@
             href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
             rel="stylesheet">
     <script type="text/javascript" src="js/angular.min.js"></script>
-    <script>
-        var app = angular.module('myApp', []);
-
-        function MyController($scope, $http) {
-
-            $scope.getDataFromServer = function() {
-                $http({
-                    method : 'GET',
-                    url : 'all'
-                }).success(function(data, status, headers, config) {
-                    $scope.laptops = data;
-
-                }).error(function(data, status, headers, config) {
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
-
-            };
-        };
-    </script>
+    <script type="text/javascript" src="js/show all laptops.js"></script>
 </head>
 <body>
 <div class="container">
