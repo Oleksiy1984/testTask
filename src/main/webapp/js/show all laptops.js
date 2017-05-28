@@ -1,4 +1,4 @@
-var app = angular.module('myApp', []);
+var myApp = angular.module('myApp', []);
 function MyController($scope, $http) {
 
     $scope.getDataFromServer = function() {

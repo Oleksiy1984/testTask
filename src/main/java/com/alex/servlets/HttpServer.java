@@ -3,7 +3,6 @@ package com.alex.servlets;
 import com.alex.dao.MyLaptopDAO;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,9 +16,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "HttpServer",urlPatterns = { "/server" })
 public class HttpServer extends HttpServlet {
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Laptop laptop = new Gson().fromJson(read(request).toString(), Laptop.class);
         MyLaptopDAO.getInstance().update(laptop);
         response.setContentType("text/html");
@@ -28,19 +25,15 @@ public class HttpServer extends HttpServlet {
         out.flush();
         out.close();
     }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String json = null;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        json = new Gson().toJson(MyLaptopDAO.getInstance().findById(Long.parseLong(id)));
+        String json = new Gson().toJson(MyLaptopDAO.getInstance().findById(Long.parseLong(id)));
         response.setContentType("application/json");
         response.getWriter().write(json);
     }
 
-    @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Laptop laptop = new Gson().fromJson(read(request).toString(), Laptop.class);
         MyLaptopDAO.getInstance().insert(laptop);
         response.setContentType("text/html");
@@ -50,7 +43,6 @@ public class HttpServer extends HttpServlet {
         out.close();
     }
 
-    @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         MyLaptopDAO.getInstance().delete(Long.parseLong(id));
