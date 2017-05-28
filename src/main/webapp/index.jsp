@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html data-ng-app="myApp">
 <head>
     <title>Laptop</title>
     <link
@@ -14,7 +14,7 @@
     <div class="jumbotron">
         <h1>Laptops</h1>
     </div>
-    <div data-ng-app="myApp">
+    <div >
         <div data-ng-controller="MyController">
             <p>
                 <button type="button" class="btn btn-info"

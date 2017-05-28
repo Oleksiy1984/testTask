@@ -1,5 +1,6 @@
 package com.alex.servlets;
 
+import com.alex.dao.LaptopDAO;
 import com.alex.dao.LaptopDAOImpl;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
@@ -12,11 +13,12 @@ import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet(name = "InsertLaptopServlet",urlPatterns = { "/add" })
 public class InsertLaptopServlet extends HttpServlet {
 
-    private LaptopDAOImpl dao = new LaptopDAOImpl();
+    private LaptopDAO dao = new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,7 +37,7 @@ public class InsertLaptopServlet extends HttpServlet {
 
         try {
             dao.insertLaptop(laptop);
-        } catch (PropertyVetoException e) {
+        } catch (PropertyVetoException | SQLException e) {
             e.printStackTrace();
         }
         response.setContentType("text/html");

@@ -1,5 +1,6 @@
 package com.alex.servlets;
 
+import com.alex.dao.LaptopDAO;
 import com.alex.dao.LaptopDAOImpl;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "DeleteServlet",urlPatterns = {"/delete"})
 public class DeleteServlet extends HttpServlet {
 
-    private LaptopDAOImpl dao = new LaptopDAOImpl();
+    private LaptopDAO dao = new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");

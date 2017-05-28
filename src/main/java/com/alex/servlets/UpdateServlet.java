@@ -1,5 +1,6 @@
 package com.alex.servlets;
 
+import com.alex.dao.LaptopDAO;
 import com.alex.dao.LaptopDAOImpl;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
@@ -17,7 +18,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "UpdateServlet",urlPatterns = {"/update"})
 public class UpdateServlet extends HttpServlet {
 
-    private LaptopDAOImpl dao = new LaptopDAOImpl();
+    private LaptopDAO dao = new LaptopDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuffer sb = new StringBuffer();
