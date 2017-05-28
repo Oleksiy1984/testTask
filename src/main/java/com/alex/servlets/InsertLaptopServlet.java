@@ -15,8 +15,6 @@ import java.io.PrintWriter;
 @WebServlet(name = "InsertLaptopServlet",urlPatterns = { "/add" })
 public class InsertLaptopServlet extends HttpServlet {
 
-    private MyLaptopDAO dao = new MyLaptopDAO();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         StringBuffer sb = new StringBuffer();
@@ -31,7 +29,7 @@ public class InsertLaptopServlet extends HttpServlet {
         }
 
         Laptop laptop = new Gson().fromJson(sb.toString(), Laptop.class);
-        dao.insert(laptop);
+        MyLaptopDAO.getInstance().insert(laptop);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.write("A new laptop " + laptop + " has been created.");

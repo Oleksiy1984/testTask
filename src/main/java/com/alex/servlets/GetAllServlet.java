@@ -12,12 +12,10 @@ import com.google.gson.Gson;
 @WebServlet(name = "GetAllServlet",urlPatterns = { "/laptops" })
 public class GetAllServlet extends javax.servlet.http.HttpServlet {
 
-    private MyLaptopDAO dao = new MyLaptopDAO();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String json = null;
-        json = new Gson().toJson(dao.getAll());
+        json = new Gson().toJson(MyLaptopDAO.getInstance().getAll());
         response.setContentType("application/json");
         response.getWriter().write(json);
     }

@@ -6,6 +6,12 @@ import java.util.List;
 
 public class MyLaptopDAO extends AbstractDao<Laptop> {
 
+    private static final MyLaptopDAO instance = new MyLaptopDAO();
+
+    public static MyLaptopDAO getInstance(){
+        return instance;
+    }
+
     private final static String getAll = "SELECT * FROM laptop";
     private final static String getById = "SELECT * FROM laptop WHERE id=?";
     private final static String insertLaptop = "INSERT INTO laptop\n" +

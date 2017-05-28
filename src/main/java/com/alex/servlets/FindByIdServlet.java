@@ -13,12 +13,11 @@ import java.io.IOException;
 @WebServlet(name = "FindByIdServlet",urlPatterns = { "/laptop" })
 public class FindByIdServlet extends HttpServlet {
 
-    private MyLaptopDAO dao = new MyLaptopDAO();
     private String json = null;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        json = new Gson().toJson(dao.findById(Long.parseLong(id)));
+        json = new Gson().toJson(MyLaptopDAO.getInstance().findById(Long.parseLong(id)));
         response.setContentType("application/json");
         response.getWriter().write(json);
     }

@@ -14,11 +14,9 @@ import java.io.PrintWriter;
 @WebServlet(name = "DeleteServlet",urlPatterns = {"/delete"})
 public class DeleteServlet extends HttpServlet {
 
-    private MyLaptopDAO dao = new MyLaptopDAO();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        dao.delete(Long.parseLong(id));
+        MyLaptopDAO.getInstance().delete(Long.parseLong(id));
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.write("Laptop with id " + id + " has been deleted!");

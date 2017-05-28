@@ -17,8 +17,6 @@ import java.io.PrintWriter;
 @WebServlet(name = "UpdateServlet",urlPatterns = {"/update"})
 public class UpdateServlet extends HttpServlet {
 
-    private MyLaptopDAO dao = new MyLaptopDAO();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuffer sb = new StringBuffer();
         try {
@@ -32,7 +30,7 @@ public class UpdateServlet extends HttpServlet {
         }
 
         Laptop laptop = new Gson().fromJson(sb.toString(), Laptop.class);
-        dao.update(laptop);
+        MyLaptopDAO.getInstance().update(laptop);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.write(laptop + " has been updated successfully!");
