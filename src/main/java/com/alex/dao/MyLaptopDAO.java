@@ -12,6 +12,9 @@ public class MyLaptopDAO extends AbstractDao<Laptop> {
         return instance;
     }
 
+    private MyLaptopDAO() {
+    }
+
     private final static String getAll = "SELECT * FROM laptop";
     private final static String getById = "SELECT * FROM laptop WHERE id=?";
     private final static String insertLaptop = "INSERT INTO laptop\n" +
