@@ -1,31 +1,24 @@
 package com.alex.servlets;
 
-import com.alex.dao.LaptopDAO;
-import com.alex.dao.LaptopDAOImpl;
+import com.alex.dao.MyLaptopDAO;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.beans.PropertyVetoException;
 import java.io.IOException;
-import java.sql.SQLException;
 
 
 @WebServlet(name = "FindByIdServlet",urlPatterns = { "/laptop" })
 public class FindByIdServlet extends HttpServlet {
 
-    private LaptopDAO dao = new LaptopDAOImpl();
+    private MyLaptopDAO dao = new MyLaptopDAO();
     private String json = null;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        try {
-            json = new Gson().toJson(dao.findById(Long.parseLong(id)));
-        } catch (PropertyVetoException | SQLException e) {
-            e.printStackTrace();
-        }
+        json = new Gson().toJson(dao.findById(Long.parseLong(id)));
         response.setContentType("application/json");
         response.getWriter().write(json);
     }

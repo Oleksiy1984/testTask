@@ -1,7 +1,7 @@
 package com.alex.servlets;
 
-import com.alex.dao.LaptopDAO;
-import com.alex.dao.LaptopDAOImpl;
+
+import com.alex.dao.MyLaptopDAO;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
 import javax.servlet.ServletException;
@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.beans.PropertyVetoException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +17,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "UpdateServlet",urlPatterns = {"/update"})
 public class UpdateServlet extends HttpServlet {
 
-    private LaptopDAO dao = new LaptopDAOImpl();
+    private MyLaptopDAO dao = new MyLaptopDAO();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuffer sb = new StringBuffer();
@@ -33,11 +32,7 @@ public class UpdateServlet extends HttpServlet {
         }
 
         Laptop laptop = new Gson().fromJson(sb.toString(), Laptop.class);
-        try {
-            dao.updateLaptop(laptop);
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
+        dao.update(laptop);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.write(laptop + " has been updated successfully!");
