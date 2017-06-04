@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('MyController', ['$scope', '$filter', '$http', function ($scope, $filter, $http) {
+myApp.controller('MyController', ['$scope', '$filter', '$http','$timeout', function ($scope, $filter, $http, $timeout) {
 
 //Delete
     $scope.delete = function (id,index) {
@@ -9,23 +9,33 @@ myApp.controller('MyController', ['$scope', '$filter', '$http', function ($scope
             .success(function (result) {
                 $scope.laptops.splice(index, 1);
                 $scope.result = result;
+                $scope.AlertMessage=false;
+                $timeout(function () { $scope.AlertMessage = true; }, 4000);
             })
             .error(function (data, status) {
                 console.log(data);
+                $scope.result = data;
             });
     };
 
     //Edit
-    $scope.visible = false;
-    $scope.post = function (id,index) {
-
-        $http.delete('/server?id='+ id)
+    $scope.edit = function (id,ram,cpu,screen,price) {
+        $http.post('/server', {
+            id:id,
+            ram: ram,
+            cpu:cpu,
+            screen:screen,
+            price:price
+        })
             .success(function (result) {
-                $scope.laptops.splice(index, 1);
+                console.log(result);
                 $scope.result = result;
+                $scope.AlertMessage=false;
+                $timeout(function () { $scope.AlertMessage = true; }, 4000);
             })
             .error(function (data, status) {
                 console.log(data);
+                $scope.result = data;
             });
     };
 
@@ -65,6 +75,8 @@ myApp.controller('MyController', ['$scope', '$filter', '$http', function ($scope
 
                 console.log(result);
                 $scope.result = result;
+                $scope.AlertMessage=false;
+                $timeout(function () { $scope.AlertMessage = true; }, 4000);
                 $scope.ram = '';
                 $scope.cpu='';
                 $scope.screen='';
