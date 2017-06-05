@@ -21,14 +21,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
+                    <li class="active"><a href="/add">Add laptop<span class="sr-only">(current)</span></a></li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
@@ -70,27 +69,7 @@
                     </tr>
                 </table>
             </div>
-            <form>
-                <div class="form-group">
-                    <label for="ram">Ram:</label>
-                    <input type="text" class="form-control" id="ram" ng-model="ram"/>
-                </div>
-                <div class="form-group">
-                    <label for="cpu">CPU:</label>
-                    <input type="text" class="form-control" id="cpu" ng-model="cpu"/>
-                </div>
-                <div class="form-group">
-                    <label for="screen">Screen:</label>
-                    <input type="text" class="form-control" id="screen" ng-model="screen"/>
-                </div>
-                <div class="form-group">
-                    <label for="price">Price:</label>
-                    <input type="text" class="form-control" id="price" ng-model="price"/>
-                </div>
-                <div class="form-group">
-                    <a href="#" class="btn btn-default" data-ng-click="addLaptop()">Add</a>
-                </div>
-            </form>
+
             <div ng-hide="AlertMessage">
                 <strong style="color: green">{{result}}</strong>
             </div>
@@ -130,7 +109,8 @@
                                 <input type="text" ng-model="laptop.price" placeholder=Price" ng-required/>
                                 <br/>
                                 <button class="btn" type="submit" ng-click="edit(laptop.id,laptop.ram,laptop.cpu,
-                                laptop.screen,laptop.price)">Update</button>
+                                laptop.screen,laptop.price)">Update
+                                </button>
                             </form>
                         </td>
                         <td>

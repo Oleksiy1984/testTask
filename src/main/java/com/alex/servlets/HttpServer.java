@@ -3,6 +3,7 @@ package com.alex.servlets;
 import com.alex.dao.MyLaptopDAO;
 import com.alex.domain.Laptop;
 import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet(name = "HttpServer",urlPatterns = { "/server" })
+@WebServlet(name = "HttpServer", urlPatterns = {"/server"})
 public class HttpServer extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +54,7 @@ public class HttpServer extends HttpServlet {
         out.close();
     }
 
-    private static StringBuffer read(HttpServletRequest request){
+    private static StringBuffer read(HttpServletRequest request) {
         StringBuffer sb = new StringBuffer();
         try {
             BufferedReader reader = request.getReader();
