@@ -16,7 +16,8 @@ myApp.config(function ($routeProvider) {
 
 });
 
-myApp.controller('MyController', ['$scope', '$filter', '$http','$timeout', function ($scope, $filter, $http, $timeout) {
+myApp.controller('MyController', ['$scope', '$filter', '$http','$timeout',
+     function ($scope, $filter, $http, $timeout) {
 
 //Delete
     $scope.delete = function (id,index) {
