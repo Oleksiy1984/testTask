@@ -1,0 +1,51 @@
+<div ng-hide="AlertMessage">
+    <strong style="color: green">{{result}}</strong>
+</div>
+<p>
+    <button type="button" class="btn btn-info"
+            data-ng-click="getDataFromServer()"
+            data-toggle="collapse"
+            data-target="#demo">All laptops
+    </button>
+<div id="demo" class="collapse">
+    <table id="allResults" class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>RAM</th>
+            <th>CPU</th>
+            <th>Screen</th>
+            <th>Price</th>
+        </tr>
+        <tr data-ng-repeat="laptop in laptops track by $index">
+            <td>{{laptop.id}}</td>
+            <td>{{laptop.ram}}</td>
+            <td>{{laptop.cpu}}</td>
+            <td>{{laptop.screen}}</td>
+            <td>{{laptop.price}}</td>
+            <td>
+                <button type="submit" class="btn btn-primary"
+                        ng-hide="editing" ng-click="editing = true">Edit
+                </button>
+                <form ng-show="editing" ng-submit="editing = false">
+                    <label>Ram:</label>
+                    <input type="text" ng-model="laptop.ram" placeholder=Ram" ng-required/>
+                    <label>CPU:</label>
+                    <input type="text" ng-model="laptop.cpu" placeholder=Cpu" ng-required/>
+                    <label>Screen:</label>
+                    <input type="text" ng-model="laptop.screen" placeholder=Screen" ng-required/>
+                    <label>Price:</label>
+                    <input type="text" ng-model="laptop.price" placeholder=Price" ng-required/>
+                    <br/>
+                    <button class="btn" type="submit" ng-click="edit(laptop.id,laptop.ram,laptop.cpu,
+                                laptop.screen,laptop.price)">Update
+                    </button>
+                </form>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"
+                        data-ng-click="delete(laptop.id,$index)">Delete
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

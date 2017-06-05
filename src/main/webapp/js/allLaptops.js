@@ -1,4 +1,20 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
+
+myApp.config(function ($routeProvider) {
+
+    $routeProvider
+
+        .when('/', {
+            templateUrl: '/partial/main.html',
+            controller: 'MyController'
+        })
+
+        .when('/add', {
+            templateUrl:'/partial/add.html',
+            controller: 'MyController'
+        });
+
+});
 
 myApp.controller('MyController', ['$scope', '$filter', '$http','$timeout', function ($scope, $filter, $http, $timeout) {
 

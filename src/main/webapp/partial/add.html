@@ -1,0 +1,26 @@
+<div ng-hide="AlertMessage">
+    <strong style="color: green">{{result}}</strong>
+</div>
+            <label>Add laptop:</label>
+            <form>
+                <div class="form-group">
+                    <label for="ram">Ram:</label>
+                    <input type="text" class="form-control" id="ram" ng-model="ram"/>
+                </div>
+                <div class="form-group">
+                    <label for="cpu">CPU:</label>
+                    <input type="text" class="form-control" id="cpu" ng-model="cpu"/>
+                </div>
+                <div class="form-group">
+                    <label for="screen">Screen:</label>
+                    <input type="text" class="form-control" id="screen" ng-model="screen"/>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price" ng-model="price"/>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="btn btn-default" data-ng-click="addLaptop()">Add</a>
+                </div>
+            </form>
+
