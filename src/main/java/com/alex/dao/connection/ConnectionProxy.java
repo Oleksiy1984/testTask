@@ -23,6 +23,11 @@ public class ConnectionProxy implements AutoCloseable {
         return connection.createStatement();
     }
 
+    public int getTransactionIsolation() throws SQLException {
+        LOGGER.info("isolation level - " + connection.getTransactionIsolation());
+        return connection.getTransactionIsolation();
+    }
+
     public void begin(){
         try {
             connection.setAutoCommit(false);

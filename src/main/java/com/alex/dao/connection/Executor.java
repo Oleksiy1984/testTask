@@ -51,6 +51,7 @@ public class Executor {
         List<Laptop> list = new ArrayList<>();
         try (ConnectionProxy connectionProxy = TransactionHelper.getInstance().getConnection();
              Statement statement = connectionProxy.createStatement()) {
+            connectionProxy.getTransactionIsolation();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 list.add(new Laptop(resultSet.getLong(1),
